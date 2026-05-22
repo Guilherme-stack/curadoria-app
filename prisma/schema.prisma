@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        String      @id @default(uuid())
+  nome      String
+  email     String      @unique
+  senha     String
+  createdAt DateTime    @default(now())
+  fragmentos Fragmento[]
+
+  @@map("usuarios")
+}
+
+model Fragmento {
+  id        String   @id @default(uuid())
+  titulo    String
+  autor     String
+  conteudo  String
+  categoria String
+  tags      String[]
+  fonte     String?  @default("")
+  insight   String?
+  createdAt DateTime @default(now())
+  usuarioId String
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+
+  @@map("fragmentos") // Nome da tabela no banco
+}
