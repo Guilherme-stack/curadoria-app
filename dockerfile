@@ -25,4 +25,4 @@ RUN npm run build
 EXPOSE 3000
 
 # 7. O comando para ligar o motor
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/server.js"]
