@@ -15,6 +15,12 @@ RUN npm install
 # 5. Copia o resto do código
 COPY . .
 
+# gera o prisma client
+RUN npx prisma generate
+
+# compila TypeScript → gera a pasta dist
+RUN npm run build
+
 # 6. Porta que o contêiner vai expor
 EXPOSE 3000
 
