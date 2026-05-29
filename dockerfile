@@ -15,6 +15,9 @@ RUN npm install
 # 5. Copia o resto do código
 COPY . .
 
+# DATABASE_URL fake só para o prisma generate funcionar no build
+RUN DATABASE_URL="postgresql://fake:fake@fake:5432/fake" npx prisma generate
+
 # gera o prisma client
 RUN npx prisma generate
 
