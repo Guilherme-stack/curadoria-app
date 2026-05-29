@@ -32,6 +32,7 @@ export class UsuarioController {
   }
 
   async login(req: Request, res: Response) {
+    console.log("testttt");
     const { email, senha } = req.body;
     if (!email || !senha) {
       return res

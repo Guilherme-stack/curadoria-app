@@ -1,11 +1,18 @@
 import express from "express";
+import cors from "cors";
 import curadoriaRoutes from "./routes/curadoria.routes";
 import usuarioRouter from "./routes/usuario.routes";
 import { env } from "./config/env";
-
 const app = express();
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use("/curadoria", curadoriaRoutes);
 app.use("/usuario", usuarioRouter);
 
