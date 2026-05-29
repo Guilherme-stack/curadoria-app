@@ -7,7 +7,6 @@ export class UsuarioService {
   private repository = new UsuarioRepository();
 
   async criarUsuario(dados: IUsuarioInput) {
-    console.log(dados, "teste");
     const usuarioExistente = await this.repository.findByEmail(dados.email);
     if (usuarioExistente) {
       throw new Error("EMAIL_JA_CADASTRADO");
