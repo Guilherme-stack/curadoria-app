@@ -12,6 +12,11 @@ app.use(
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
+  cors({
+    origin: "https://curadoria-app-production.up.railway.app",
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
 );
 app.use("/curadoria", curadoriaRoutes);
 app.use("/usuario", usuarioRouter);
