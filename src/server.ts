@@ -13,7 +13,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
   cors({
-    origin: "https://curadoria-app-production.up.railway.app",
+    origin: "https://curadoria-front.vercel.app/",
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
