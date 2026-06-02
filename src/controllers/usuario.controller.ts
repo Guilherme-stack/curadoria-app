@@ -31,8 +31,20 @@ export class UsuarioController {
     }
   }
 
+  async me(req: Request, res: Response) {
+    try {
+      if (!req.usuario) {
+        throw new Error("Requisição sem autenticação!");
+      }
+      const usuario = await service.buscarPorId(req.usuario.id);
+      return res.status(200).json(usuario);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erro ao tentar recuperar sessão" });
+    }
+  }
+
   async login(req: Request, res: Response) {
-    console.log("testttt");
     const { email, senha } = req.body;
     if (!email || !senha) {
       return res

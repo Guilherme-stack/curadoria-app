@@ -13,7 +13,6 @@ export class CuradoriaService {
         categoria: fragmento.categoria,
         conteudo: fragmento.conteudo,
         titulo: fragmento.titulo,
-        usuarioId: fragmento.usuarioId,
       });
       const fragmentoAtualizado = await this.editarCuradoria(
         fragmento.id,
@@ -27,6 +26,28 @@ export class CuradoriaService {
     } catch (error) {
       console.error(error);
       return fragmento;
+    }
+  }
+
+  async gerarInsight(data: Omit<IFragmento, "createdAt" | "insight" | "tags">) {
+    try {
+      const insight = await gerarInsight({
+        autor: data.autor,
+        categoria: data.categoria,
+        conteudo: data.conteudo,
+        titulo: data.titulo,
+      });
+      const fragmentoAtualizado = await this.editarCuradoria(
+        data.id,
+        data.usuarioId,
+        {
+          insight,
+        },
+      );
+      return fragmentoAtualizado;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erro ao tentar gerar insight!");
     }
   }
 

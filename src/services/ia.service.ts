@@ -3,7 +3,10 @@ import { IFragmentoInput } from "../@types/fragmento";
 import { env } from "../config/env";
 const ia = new GoogleGenerativeAI(env.GEMINI_API_KEY);
 
-export type IGerarInsight = Omit<IFragmentoInput, "tags" | "fonte">;
+export type IGerarInsight = Omit<
+  IFragmentoInput,
+  "tags" | "fonte" | "usuarioId"
+>;
 
 export async function gerarInsight(dados: IGerarInsight) {
   const modelo = ia.getGenerativeModel({

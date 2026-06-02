@@ -20,6 +20,13 @@ export class UsuarioRepository {
     });
   }
 
+  async findById(id: string) {
+    return await prisma.usuario.findUnique({
+      where: { id },
+      select: { id: true, nome: true, email: true }, // sem senha
+    });
+  }
+
   async delete(id: string) {
     return await prisma.usuario.delete({
       where: { id },

@@ -12,6 +12,8 @@ router.get("/", curadoriaController.index);
 router.get("/:id", curadoriaController.show);
 
 router.patch("/:id", curadoriaController.update);
+router.patch("/insight/:id", curadoriaController.createInsight);
+
 router.delete("/:id", curadoriaController.delete);
 
 export default router;

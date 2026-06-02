@@ -18,6 +18,7 @@ export function authMiddleware(
       id: string;
       email: string;
     };
+
     req.usuario = decoded;
     next();
   } catch (error) {

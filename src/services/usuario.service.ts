@@ -49,6 +49,10 @@ export class UsuarioService {
     return await this.repository.findByEmail(email);
   }
 
+  async buscarPorId(id: string) {
+    return await this.repository.findById(id);
+  }
+
   async deletarUsuario(id: string) {
     return await this.repository.delete(id);
   }

@@ -35,6 +35,26 @@ export class CuradoriaController {
     }
   }
 
+  async createInsight(req: Request, res: Response) {
+    const { titulo, autor, categoria, conteudo, fonte, usuarioId, id } =
+      req.body;
+    try {
+      const update = await curadoriaService.gerarInsight({
+        autor,
+        categoria,
+        conteudo,
+        titulo,
+        usuarioId,
+        id,
+        fonte,
+      });
+
+      return res.status(200).json(update);
+    } catch (error) {
+      return res.status(400).json({ error: "Erro ao gerar insight" });
+    }
+  }
+
   async index(req: Request, res: Response) {
     try {
       if (!req.usuario) {
